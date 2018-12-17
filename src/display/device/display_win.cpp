@@ -222,8 +222,8 @@ WinWindow::WinWindow(
     }
     RegisterThisClass(hCurrentInst);
 
-    PangolinGl::windowed_size[0] = 0;
-    PangolinGl::windowed_size[1] = 0;
+    PangolinGl::windowed_size[0] = width;
+    PangolinGl::windowed_size[1] = height;
 
     HWND thishwnd = CreateWindow(
         className, window_title.c_str(),
@@ -589,6 +589,7 @@ PANGOLIN_REGISTER_FACTORY(WinWindow)
   
   auto factory = std::make_shared<WinWindowFactory>();
   FactoryRegistry<WindowInterface>::I().RegisterFactory(factory, 10, "winapi");
+  FactoryRegistry<WindowInterface>::I().RegisterFactory(factory, 100,  "default");
 }
 
 }
